@@ -30,4 +30,19 @@
     self.transform3D = CATransform3DMakeTranslation(0, 0, zIndex == 1 ? -1 : 0);
 }
 
+//// Source: http://stackoverflow.com/questions/18539874/how-to-refresh-uicollectionviewcell-in-ios-7
+//- (BOOL)isEqual:(id)object {
+//    if (object == self) {
+//        return YES;
+//    }
+//    if (!object || ![[object class] isEqual:[self class]]) {
+//        return NO;
+//    }
+//    if (((CSStickyHeaderFlowLayoutAttributes *) object).progressiveness != self.progressiveness) {
+//        return NO;
+//    }
+//
+//    return YES;
+//}
+
 @end

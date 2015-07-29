@@ -239,15 +239,30 @@ static const NSInteger kHeaderZIndex = 1024;
     CGRect bounds = self.collectionView.bounds;
     CGFloat maxY = CGRectGetMaxY(frame);
 
-    // make sure the frame won't be negative values
     CGFloat y = MIN(maxY - self.parallaxHeaderMinimumReferenceSize.height, bounds.origin.y + self.collectionView.contentInset.top);
     CGFloat height = MAX(0, -y + maxY);
-
+    if (self.stickBottomPart) {
+        height = CGRectGetHeight(frame);
+        if (bounds.origin.y < 0) {
+            y = bounds.origin.y;
+        } else {
+            y = MAX(bounds.origin.y - (height - self.parallaxHeaderMinimumReferenceSize.height), 0.0) + self.collectionView.contentInset.top;
+        }
+    }
 
     CGFloat maxHeight = self.parallaxHeaderReferenceSize.height;
     CGFloat minHeight = self.parallaxHeaderMinimumReferenceSize.height;
     CGFloat progressiveness = (height - minHeight)/(maxHeight - minHeight);
     currentAttribute.progressiveness = progressiveness;
+    if (self.stickBottomPart) {
+        if (y > 0.0) {
+            currentAttribute.progressiveness = 1;
+        } else if (y < 0.0) {
+            currentAttribute.progressiveness = 0;
+        } else {
+            currentAttribute.progressiveness = bounds.origin.y / (maxHeight - minHeight);
+        }
+    }
 
     // if zIndex < 0 would prevents tap from recognized right under navigation bar
     currentAttribute.zIndex = 0;
