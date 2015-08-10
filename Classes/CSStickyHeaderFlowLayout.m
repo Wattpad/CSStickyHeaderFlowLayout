@@ -268,7 +268,9 @@ static const NSInteger kHeaderZIndex = 1024;
     currentAttribute.zIndex = 0;
 
     // When parallaxHeaderAlwaysOnTop is enabled, we will check when we should update the y position
-    if (self.parallaxHeaderAlwaysOnTop && height <= self.parallaxHeaderMinimumReferenceSize.height) {
+    if (self.parallaxHeaderAlwaysOnTop && self.stickBottomPart) {
+       currentAttribute.zIndex = 2000;
+    } else if (self.parallaxHeaderAlwaysOnTop && height <= self.parallaxHeaderMinimumReferenceSize.height) {
         CGFloat insetTop = self.collectionView.contentInset.top;
         // Always stick to top but under the nav bar
         y = self.collectionView.contentOffset.y + insetTop;
