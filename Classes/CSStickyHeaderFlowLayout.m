@@ -243,8 +243,8 @@ static const NSInteger kHeaderZIndex = 1024;
     CGFloat height = MAX(0, -y + maxY);
     if (self.stickBottomPart) {
         height = CGRectGetHeight(frame);
-        if (bounds.origin.y < 0) {
-            y = bounds.origin.y;
+        if (bounds.origin.y <= -self.collectionView.contentInset.top) {
+            y = bounds.origin.y + self.collectionView.contentInset.top;
         } else {
             y = MAX(bounds.origin.y - (height - self.parallaxHeaderMinimumReferenceSize.height), 0.0) + self.collectionView.contentInset.top;
         }
