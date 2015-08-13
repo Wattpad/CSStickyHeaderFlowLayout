@@ -199,7 +199,6 @@ static const NSInteger kHeaderZIndex = 1024;
 - (void)updateHeaderAttributes:(UICollectionViewLayoutAttributes *)attributes lastCellAttributes:(UICollectionViewLayoutAttributes *)lastCellAttributes
 {
     CGRect currentBounds = self.collectionView.bounds;
-    attributes.zIndex = kHeaderZIndex;
     attributes.hidden = NO;
 
     CGPoint origin = attributes.frame.origin;
