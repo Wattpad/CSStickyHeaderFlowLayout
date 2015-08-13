@@ -105,13 +105,6 @@ static const NSInteger kHeaderZIndex = 1024;
                 visibleParallexHeader = YES;
             }
         }
-
-        if (isHeader) {
-            attributes.zIndex = kHeaderZIndex;
-        } else {
-            // For iOS 7.0, the cell zIndex should be above sticky section header
-            attributes.zIndex = 1;
-        }
     }];
 
     // when the visible rect is at top of the screen, make sure we see
